@@ -1,11 +1,13 @@
 package com.zh.server.server;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.zh.server.entity.Menu;
 import com.zh.server.entity.User;
 import com.zh.server.request.user.LoginRequest;
 import com.zh.server.response.common.ResponseBase;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * <p>
@@ -38,4 +40,10 @@ public interface UserService extends IService<User> {
      * @return
      */
     ResponseBase add(User user);
+
+    /**
+     * 根据id获取菜单，id从框架中获取
+     * @return
+     */
+    List<Menu> getMenuBuUserID();
 }

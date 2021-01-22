@@ -1,8 +1,11 @@
 package com.zh.server.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.zh.server.entity.Menu;
 import com.zh.server.entity.User;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 /**
  * <p>

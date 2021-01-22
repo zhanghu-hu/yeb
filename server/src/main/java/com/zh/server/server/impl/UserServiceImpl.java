@@ -4,7 +4,9 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zh.server.config.BasicConstants;
 import com.zh.server.config.security.JwtToken;
+import com.zh.server.entity.Menu;
 import com.zh.server.entity.User;
+import com.zh.server.mapper.MenuMapper;
 import com.zh.server.mapper.UserMapper;
 import com.zh.server.request.user.LoginRequest;
 import com.zh.server.response.common.ResponseBase;
@@ -21,6 +23,7 @@ import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -42,6 +45,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private MenuMapper menuMapper;
 
     @Autowired
     private JwtToken jwtToken;
@@ -99,5 +105,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         user.setTPassword(passwordEncoder.encode(user.getTPassword()));
         userMapper.insert(user);
         return ResponseBase.success(user);
+    }
+
+    @Override
+    public List<Menu> getMenuBuUserID() {
+        //上面登录的时候放进去的
+        User user=(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        QueryWrapper<Menu> wrapper=new QueryWrapper<>();
+        wrapper.orderByDesc("id");
+        return menuMapper.selectList(wrapper);
     }
 }
