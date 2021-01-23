@@ -1,5 +1,7 @@
 package com.zh.server.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
@@ -22,11 +24,15 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("sys_menu")
+@TableName("t_menu")
 @ApiModel(value="Menu对象", description="")
 public class Menu implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    @ApiModelProperty(name = "id",value = "主键",dataType = "Integer")
+    @TableId(value = "id",type = IdType.AUTO)
+    private Integer id;
 
     @ApiModelProperty(value = "url")
     private String url;

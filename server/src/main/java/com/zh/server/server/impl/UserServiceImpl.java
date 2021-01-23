@@ -107,13 +107,4 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return ResponseBase.success(user);
     }
 
-    @Override
-    public List<Menu> getMenuBuUserID() {
-        //上面登录的时候放进去的
-        User user=(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        QueryWrapper<Menu> wrapper=new QueryWrapper<>();
-        wrapper.orderByDesc("id");
-        return menuMapper.selectList(wrapper);
-    }
 }

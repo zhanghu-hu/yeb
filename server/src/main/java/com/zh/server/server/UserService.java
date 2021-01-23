@@ -41,9 +41,4 @@ public interface UserService extends IService<User> {
      */
     ResponseBase add(User user);
 
-    /**
-     * 根据id获取菜单，id从框架中获取
-     * @return
-     */
-    List<Menu> getMenuBuUserID();
 }

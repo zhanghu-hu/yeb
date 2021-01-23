@@ -2,6 +2,10 @@ package com.zh.server.mapper;
 
 import com.zh.server.entity.Menu;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +17,10 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface MenuMapper extends BaseMapper<Menu> {
 
+    /**
+     * 通过用户id-获取角色-获取菜单列表
+     * @param id
+     * @return
+     */
+    List<Menu> getMenusByAdminId(@Param("userID") Integer id);
 }
