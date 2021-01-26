@@ -2,6 +2,7 @@ package com.zh.server.server;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.zh.server.entity.Menu;
+import com.zh.server.entity.Role;
 import com.zh.server.entity.User;
 import com.zh.server.request.user.LoginRequest;
 import com.zh.server.response.common.ResponseBase;
@@ -41,4 +42,11 @@ public interface UserService extends IService<User> {
      */
     ResponseBase add(User user);
 
+    /**
+     * 根据用户ID查询角色列表
+     * 与请求菜单的角色做对比，看看用户请求的合法性
+     * @param adminId
+     * @return
+     */
+    List<Role> getRolesByAdminId(Integer adminId);
 }

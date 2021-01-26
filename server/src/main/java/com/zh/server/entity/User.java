@@ -1,6 +1,7 @@
 package com.zh.server.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
@@ -14,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * <p>
@@ -61,6 +63,10 @@ public class User implements Serializable, UserDetails {
 
     @ApiModelProperty(value = "备注")
     private String tRemark;
+
+    @ApiModelProperty(value = "角色")
+    @TableField(exist = false)
+    private List<Role> roles;
 
     /**
      * 权限

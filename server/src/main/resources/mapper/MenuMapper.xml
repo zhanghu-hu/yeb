@@ -31,13 +31,14 @@
             <result column="enabled2" property="enabled"/>
         </collection>
     </resultMap>
-<!--    <resultMap id="MenusWithRoles" type="com.xxxx.server.pojo.Menu" extends="BaseResultMap">-->
-<!--        <collection property="roles" ofType="com.xxxx.server.pojo.Role">-->
-<!--            <id column="rid" property="id" />-->
-<!--            <result column="rname" property="name" />-->
-<!--            <result column="rnameZh" property="nameZh" />-->
-<!--        </collection>-->
-<!--    </resultMap>-->
+    <!--对应权限-->
+    <resultMap id="MenusWithRoles" type="com.zh.server.entity.Menu" extends="BaseResultMap">
+        <collection property="roles" ofType="com.zh.server.entity.Role">
+            <id column="rid" property="id" />
+            <result column="rname" property="name" />
+            <result column="rnameZh" property="nameZh" />
+        </collection>
+    </resultMap>
 <!--    <resultMap id="MenusWithChildren" type="com.xxxx.server.pojo.Menu" extends="BaseResultMap">-->
 <!--        <id column="id1" property="id" />-->
 <!--        <result column="name1" property="name" />-->
@@ -57,7 +58,10 @@
         id, url, path, component, name, iconCls, keepAlive, requireAuth, parentId, enabled
     </sql>
 
-    <!--通过用户id-获取角色-获取菜单列表-->
+    <!--通过用户id-获取角色-获取菜单列表
+        m1.*会做全表查询，最好是写出全部列名 可以提高一定的效率
+        缺点：1、顶级菜单（parentId==null）无法查询出来
+             2、多级菜单虽然都能查询，但只能显示最后二级的层级关系-->
     <select id="getMenusByAdminId" resultMap="Menus">
         select
             distinct m1.*,
@@ -87,21 +91,21 @@
             m2.id
     </select>
 
-<!--    &lt;!&ndash;根据角色获取菜单列表&ndash;&gt;-->
-<!--    <select id="getMenusWithRole" resultMap="MenusWithRoles">-->
-<!--        select-->
-<!--            m.*,-->
-<!--            r.id as rid,-->
-<!--            r.name as rname,-->
-<!--            r.nameZh as rnameZh-->
-<!--        from t_menu m,-->
-<!--             t_menu_role mr,-->
-<!--             t_role r-->
-<!--        where-->
-<!--            m.id = mr.mid-->
-<!--            and mr.rid = r.id-->
-<!--        order by m.id;-->
-<!--    </select>-->
+    <!--获取菜单对应的角色列表-->
+    <select id="getMenusWithRole" resultMap="MenusWithRoles">
+        select
+            m.*,
+            r.id as rid,
+            r.name as rname,
+            r.nameZh as rnameZh
+        from t_menu m,
+             t_menu_role mr,
+             t_role r
+        where
+            m.id = mr.mid
+            and mr.rid = r.id
+        order by m.id;
+    </select>
 
 <!--    <select id="getAllMenus"  resultMap="MenusWithChildren">-->
 <!--        select-->

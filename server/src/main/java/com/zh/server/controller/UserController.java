@@ -53,6 +53,7 @@ public class UserController {
         String username=principal.getName();
         User user=userService.getUserByUsername(username);
         user.setTPassword(null);
+        user.setRoles(userService.getRolesByAdminId(user.getTId()));
         return ResponseBase.success(user);
     }
 

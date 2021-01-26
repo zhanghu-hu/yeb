@@ -20,4 +20,12 @@ public interface MenuService extends IService<Menu> {
      * @return
      */
     List<Menu> getMenuBuUserID();
+
+    /**
+     * 查询菜单对应的角色权限列表
+     * 根据请求的url获取角色，菜单表中存有url
+     * @return
+     */
+    List<Menu> getMenusWithRole();
+
 }

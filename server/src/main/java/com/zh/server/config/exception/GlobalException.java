@@ -11,6 +11,9 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
+
 /**
  * 全局异常处理
  */
@@ -27,6 +30,15 @@ public class GlobalException {
         BindingResult bindingResult = e.getBindingResult();
         ObjectError objectError = bindingResult.getAllErrors().stream().findFirst().get();
         return ResponseBase.failed(400,objectError.getDefaultMessage());
+    }
+
+    @ExceptionHandler(value = SQLException.class)
+    public ResponseBase handler(SQLException e){
+        logger.error(e.getMessage());
+        if (e instanceof SQLIntegrityConstraintViolationException){
+            return ResponseBase.failed(BasicConstants.HttpStatus.SQL_FOREIGN_KEY_ERROE.code,BasicConstants.HttpStatus.SQL_FOREIGN_KEY_ERROE.msg);
+        }
+        return ResponseBase.failed(BasicConstants.HttpStatus.SQL_ERROR.code,BasicConstants.HttpStatus.SQL_ERROR.msg);
     }
 
     @ExceptionHandler(value = Exception.class)  //处理全部异常，Exception为所有异常的父类

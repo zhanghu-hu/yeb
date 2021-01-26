@@ -5,8 +5,10 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zh.server.config.BasicConstants;
 import com.zh.server.config.security.JwtToken;
 import com.zh.server.entity.Menu;
+import com.zh.server.entity.Role;
 import com.zh.server.entity.User;
 import com.zh.server.mapper.MenuMapper;
+import com.zh.server.mapper.RoleMapper;
 import com.zh.server.mapper.UserMapper;
 import com.zh.server.request.user.LoginRequest;
 import com.zh.server.response.common.ResponseBase;
@@ -47,7 +49,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     private UserMapper userMapper;
 
     @Autowired
-    private MenuMapper menuMapper;
+    private RoleMapper roleMapper;
 
     @Autowired
     private JwtToken jwtToken;
@@ -63,6 +65,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         //校验验证码
         String captcha=(String) request.getSession().getAttribute("captcha");
         //!captcha.equalsIgnoreCase(loginRequest.getCode()) 忽略大小写去比较字符是否相等
+        //验证码是在生成的时候放入响应会话的
         if (StringUtils.isEmpty(loginRequest.getCode())||!captcha.equalsIgnoreCase(loginRequest.getCode())){
             return ResponseBase.failed(BasicConstants.HttpStatus.NO_CODE.code,BasicConstants.HttpStatus.NO_CODE.msg);
         }
@@ -107,4 +110,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return ResponseBase.success(user);
     }
 
+    @Override
+    public List<Role> getRolesByAdminId(Integer adminId) {
+        return roleMapper.getRolesByAdminId(adminId);
+    }
 }

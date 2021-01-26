@@ -1,5 +1,7 @@
 package com.zh.server.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
@@ -25,6 +27,10 @@ import lombok.experimental.Accessors;
 public class UserRole implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    @ApiModelProperty(name = "id",value = "主键",dataType = "Integer")
+    @TableId(value = "id",type = IdType.AUTO)
+    private Integer id;
 
     @ApiModelProperty(value = "用户id")
     @TableField("adminId")
