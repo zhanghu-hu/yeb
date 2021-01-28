@@ -6,8 +6,10 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.experimental.Accessors;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -48,6 +50,7 @@ public class User implements Serializable, UserDetails {
     private String tAddress;
 
     @ApiModelProperty(value = "是否启用")
+    @Getter(AccessLevel.NONE) //不生成get方法
     private Boolean tEnable;
 
     @ApiModelProperty(value = "用户名")

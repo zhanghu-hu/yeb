@@ -1,5 +1,7 @@
 package com.zh.server.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -26,6 +28,10 @@ import lombok.experimental.Accessors;
 public class Salary implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    @ApiModelProperty(value = "主键")
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
 
     @ApiModelProperty(value = "基本工资")
     @TableField("basicSalary")

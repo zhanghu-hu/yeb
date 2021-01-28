@@ -8,6 +8,7 @@ import com.zh.server.server.DepartmentService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -32,6 +33,7 @@ public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, Departm
     }
 
     @Override
+    @Transactional(rollbackFor = RuntimeException.class) //主程序入口也要开启事务控制
     public ResponseBase addDep(Department dep) {
         dep.setEnabled(true);
         //执行存储过程
@@ -44,6 +46,7 @@ public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, Departm
     }
 
     @Override
+    @Transactional(rollbackFor = RuntimeException.class) //主程序入口也要开启事务控制
     public ResponseBase deleteDepartment(Integer id) {
 
         Department department = new Department();

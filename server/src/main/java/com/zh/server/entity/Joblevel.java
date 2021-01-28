@@ -1,13 +1,15 @@
 package com.zh.server.entity;
 
+import cn.afterturn.easypoi.excel.annotation.Excel;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 import lombok.experimental.Accessors;
 
 /**
@@ -19,7 +21,9 @@ import lombok.experimental.Accessors;
  * @since 2021-01-22
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
+@NoArgsConstructor
+@RequiredArgsConstructor
+@EqualsAndHashCode(callSuper = false,of = "name")
 @Accessors(chain = true)
 @TableName("t_joblevel")
 @ApiModel(value="Joblevel对象", description="")
@@ -27,7 +31,13 @@ public class Joblevel implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @ApiModelProperty(value = "主键")
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
+
     @ApiModelProperty(value = "职称名称")
+    @NonNull
+    @Excel(name = "职称名称")
     private String name;
 
     @ApiModelProperty(value = "职称等级")

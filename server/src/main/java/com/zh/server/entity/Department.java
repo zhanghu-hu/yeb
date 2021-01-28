@@ -1,5 +1,6 @@
 package com.zh.server.entity;
 
+import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -9,8 +10,7 @@ import java.util.List;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 import lombok.experimental.Accessors;
 
 /**
@@ -22,7 +22,9 @@ import lombok.experimental.Accessors;
  * @since 2021-01-22
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
+@NoArgsConstructor
+@RequiredArgsConstructor
+@EqualsAndHashCode(callSuper = false,of = "name")
 @Accessors(chain = true)
 @TableName("t_department")
 @ApiModel(value="Department对象", description="")
@@ -35,6 +37,8 @@ public class Department implements Serializable {
     private Integer id;
 
     @ApiModelProperty(value = "部门名称")
+    @NonNull
+    @Excel(name = "部门名称")
     private String name;
 
     @ApiModelProperty(value = "父id")
