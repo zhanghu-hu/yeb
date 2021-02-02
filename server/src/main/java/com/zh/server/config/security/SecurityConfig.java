@@ -64,7 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 "/css/**", "/js/**",
                 "/doc.html", "/swagger-ui.html", "/index.html",
                 "favicon.ico",
-                "/webjars/**", "/swagger-resources/**", "/v2/api-docs/**"
+                "/webjars/**", "/swagger-resources/**", "/v2/api-docs/**","/ws/**"
         );
     }
 
@@ -84,7 +84,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 //允许登录访问
-                .antMatchers("/user/login", "/user/logout")
+                .antMatchers("/**")
+//                .antMatchers("/user/login", "/user/logout")
                 .permitAll()
                 //除了上面的请求都需要认证
                 .anyRequest()

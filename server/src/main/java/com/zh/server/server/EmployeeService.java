@@ -33,4 +33,11 @@ public interface EmployeeService extends IService<Employee> {
      * @return
      */
     List<Employee> getEmployee(Integer id);
+
+    /**
+     * 新增职员
+     * @param employee
+     * @return
+     */
+    ResponseBase addEmp(Employee employee);
 }

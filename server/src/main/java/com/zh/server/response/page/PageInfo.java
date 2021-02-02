@@ -1,4 +1,4 @@
-package com.zh.server.response.common.page;
+package com.zh.server.response.page;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

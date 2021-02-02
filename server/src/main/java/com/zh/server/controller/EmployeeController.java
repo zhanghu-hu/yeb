@@ -12,11 +12,9 @@ import com.zh.server.response.common.ResponseBase;
 import com.zh.server.server.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -29,7 +27,7 @@ import java.util.List;
 
 /**
  * <p>
- * 前端控制器
+ * 员工表
  * </p>
  *
  * @author ZH
@@ -64,6 +62,12 @@ public class EmployeeController {
     public ResponseBase getEmployeeByPage(@RequestParam(defaultValue = "1") Integer currentPage, @RequestParam(defaultValue = "10") Integer size,
                                           Employee employee, LocalDate[] beginDateScope) {
         return employeeService.getEmployeeByPage(currentPage, size, employee, beginDateScope);
+    }
+
+    @PostMapping("/add")
+    @ApiOperation(value = "新增职员")
+    public ResponseBase addEmp(@RequestBody Employee employee){
+        return employeeService.addEmp(employee);
     }
 
     @ApiOperation(value = "导出员工数据")

@@ -4,7 +4,6 @@ package com.zh.server.controller;
 import com.zh.server.entity.Menu;
 import com.zh.server.response.common.ResponseBase;
 import com.zh.server.server.MenuService;
-import com.zh.server.server.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -19,6 +19,19 @@ spring:
       max-lifetime: 1000000 #连接最大存活时间，0表示永久存活，默认1000000（30min）
       connection-timeout: 30000 #连接超时时间，默认30000（30s）
       connection-test-query: SELECT 1 #测试连接是否可用的查询语句
+  #rabbitmq配置
+  rabbitmq:
+    username: admin
+    #密码
+    password: sa123
+    #服务器地址
+    host: 192.168.10.117
+    #端口
+    port: 15672
+    virtual-host: /
+    listener:
+      simple:
+        acknowledge-mode: manual
 
 mybatis-plus:
   type-aliases-package: com.zh.server.entity #实体位置

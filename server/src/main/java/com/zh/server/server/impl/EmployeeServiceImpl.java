@@ -2,21 +2,25 @@ package com.zh.server.server.impl;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.zh.server.config.BasicConstants;
 import com.zh.server.entity.Employee;
 import com.zh.server.mapper.EmployeeMapper;
 import com.zh.server.response.common.ResponseBase;
-import com.zh.server.response.common.page.PageInfo;
+import com.zh.server.response.page.PageInfo;
 import com.zh.server.server.EmployeeService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author ZH
@@ -27,6 +31,9 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
 
     @Autowired
     private EmployeeMapper employeeMapper;
+
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
     @Override
     public ResponseBase getEmployeeByPage(Integer currentPage, Integer size, Employee employee, LocalDate... beginDateScope) {
@@ -40,5 +47,23 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
     @Override
     public List<Employee> getEmployee(Integer id) {
         return employeeMapper.getEmployee(id);
+    }
+
+    @Override
+    public ResponseBase addEmp(Employee employee) {
+        //处理合同期限成年，保留二位小数
+        LocalDate beginContract = employee.getBeginContract();
+        LocalDate endContract = employee.getEndContract();
+        long days = beginContract.until(endContract, ChronoUnit.DAYS);
+        DecimalFormat decimalFormat=new DecimalFormat("##.00");
+        employee.setContractTerm(Double.parseDouble(decimalFormat.format(days/365.0)));
+        if (employeeMapper.insert(employee)==1){
+            //发送邮件
+            Employee emp=employeeMapper.selectById(employee.getId());
+            rabbitTemplate.convertAndSend("mail.welcome",emp);
+
+            return ResponseBase.success(null);
+        }
+        return ResponseBase.failed(BasicConstants.HttpStatus.INTERNAL_SERVER_ERROR.code,BasicConstants.HttpStatus.INTERNAL_SERVER_ERROR.msg);
     }
 }

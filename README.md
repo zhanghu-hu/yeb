@@ -11,6 +11,8 @@
 5、验证码生成并存在全局的请求会话中\
 6、mybatis-plus代码生成器\
 7、mybatis分页配置，实体忽略\
-8、全局时间转换\
+8、全局时间转换\ 
 9、EasyPoi、Excel4J，HuTools处理文件，easyToExcel处理效率高但只能处理Excel。这里使用了EasyPoi\
-10、@GetMapping标签设置produces属性（返回流形式：produces = "application/octet-stream" / 返回图片：produces = "image/jpeg"）
+10、@GetMapping标签设置produces属性（返回流形式：produces = "application/octet-stream" / 返回图片：produces = "image/jpeg"）\
+11、WebSocket实现聊天推送和服务器信息推送\
+12、Kaptcha验证码

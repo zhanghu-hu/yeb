@@ -4,10 +4,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zh.server.config.BasicConstants;
 import com.zh.server.config.security.JwtToken;
-import com.zh.server.entity.Menu;
 import com.zh.server.entity.Role;
 import com.zh.server.entity.User;
-import com.zh.server.mapper.MenuMapper;
 import com.zh.server.mapper.RoleMapper;
 import com.zh.server.mapper.UserMapper;
 import com.zh.server.request.user.LoginRequest;
@@ -115,5 +113,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public List<Role> getRolesByAdminId(Integer adminId) {
         return roleMapper.getRolesByAdminId(adminId);
+    }
+
+    @Override
+    public List<User> getAllUsers(String keywords) {
+
+        QueryWrapper<User> wrapper=new QueryWrapper<>();
+        wrapper.like("t_name",keywords);
+        return userMapper.selectList(wrapper);
     }
 }
