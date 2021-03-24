@@ -19,7 +19,7 @@ import java.util.List;
  * 根据请求url分析出请求所需角色
  * 再根据登录用户的角色，判断请求是否合法
  *
- * 每次请求都会经过这里，检查所需的角色
+ * 每次请求（白名单不会到这个拦截器里来 ）都会经过这里，检查所需的角色
  * @author ZH
  * @date 2021-01-23
  */
@@ -35,7 +35,7 @@ public class CustomFilter implements FilterInvocationSecurityMetadataSource {
     public Collection<ConfigAttribute> getAttributes(Object o) throws IllegalArgumentException {
         //获取请求的url
         String requestUrl = ((FilterInvocation)o).getRequestUrl();
-        //获取菜单，菜单改动较少访问平凡 可以放到redis里面
+        //获取菜单，菜单改动较少访问频繁 可以放到redis里面
         List<Menu> menus = menuService.getMenusWithRole();
         for (Menu menu : menus) {
             //判断请求的url与菜单角色是否匹配

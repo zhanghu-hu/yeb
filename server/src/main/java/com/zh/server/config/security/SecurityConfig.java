@@ -51,7 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     * 专业放行的路径，还是会走咱定义的拦截器,不会走菜单权限检验的拦截器
+     * 专业放行的路径，还是会走咱定义的前置拦截器,不会走菜单权限检验的拦截器
      * 放行路径要写全路径（/user/login或者/user/**  而不是/login、/logout之类的）
      *
      * @param web

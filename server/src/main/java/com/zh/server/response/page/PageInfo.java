@@ -12,7 +12,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PageInfo {
+public class PageInfo<T> {
 
     /**
      * 总数量
@@ -22,5 +22,5 @@ public class PageInfo {
     /**
      * 数据
      */
-    private List<?> pageData;
+    private List<T> pageData;
 }

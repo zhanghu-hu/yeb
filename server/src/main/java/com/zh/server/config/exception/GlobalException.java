@@ -35,6 +35,7 @@ public class GlobalException {
     @ExceptionHandler(value = SQLException.class)
     public ResponseBase handler(SQLException e){
         logger.error(e.getMessage());
+        //返回外键错误
         if (e instanceof SQLIntegrityConstraintViolationException){
             return ResponseBase.failed(BasicConstants.HttpStatus.SQL_FOREIGN_KEY_ERROE.code,BasicConstants.HttpStatus.SQL_FOREIGN_KEY_ERROE.msg);
         }

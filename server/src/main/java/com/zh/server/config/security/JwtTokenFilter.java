@@ -36,6 +36,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
     /**
      * 前置拦截
+     * 所有请求（包括白名单）都进入这个拦截器，职能是根据token设置用户对象
      * @param httpServletRequest
      * @param httpServletResponse
      * @param filterChain

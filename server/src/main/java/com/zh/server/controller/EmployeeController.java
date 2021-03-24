@@ -12,6 +12,7 @@ import com.zh.server.response.common.ResponseBase;
 import com.zh.server.server.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +59,11 @@ public class EmployeeController {
 
     @ApiOperation(value = "获取所有员工（分页）")
     @GetMapping("/all")
-    @ApiImplicitParam(name = "beginDateScope", value = "在职时间数字", dataType = "LocalDate")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "beginDateScope", value = "在职时间数字", dataType = "LocalDate"),
+            @ApiImplicitParam(name = "currentPage",value = "当前页",dataType = "Integer"),
+            @ApiImplicitParam(name = "size",value = "每页多少条数据",dataType = "Integer")
+    })
     public ResponseBase getEmployeeByPage(@RequestParam(defaultValue = "1") Integer currentPage, @RequestParam(defaultValue = "10") Integer size,
                                           Employee employee, LocalDate[] beginDateScope) {
         return employeeService.getEmployeeByPage(currentPage, size, employee, beginDateScope);

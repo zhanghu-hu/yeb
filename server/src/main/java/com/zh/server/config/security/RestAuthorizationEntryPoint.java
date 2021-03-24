@@ -32,7 +32,7 @@ public class RestAuthorizationEntryPoint implements AuthenticationEntryPoint {
         PrintWriter out=httpServletResponse.getWriter();
         out.write(new ObjectMapper().writeValueAsString(base));//将对象转换成json字符串
 
-        out.flush();//清空缓冲区，爆炸数据全部写入不丢失
+        out.flush();//清空缓冲区，保证数据全部写入不丢失
         out.close();
     }
 }
