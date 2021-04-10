@@ -130,7 +130,7 @@ public class EmployeeController {
                 employee.setPosId(positions.get(positions.indexOf(new Position(employee.getPosition().getName()))).getId());
             });
             if (employeeService.saveBatch(list)) {
-                return ResponseBase.success(null);
+                return new ResponseBase().success(null);
             }
             return ResponseBase.failed(BasicConstants.HttpStatus.INTERNAL_SERVER_ERROR.code, BasicConstants.HttpStatus.INTERNAL_SERVER_ERROR.msg);
         } catch (Exception e) {

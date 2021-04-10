@@ -49,10 +49,13 @@ public class CustomUrlDecisionManager implements AccessDecisionManager {
 //                    return;
 //                }
 //            }
-            User principal = (User)authentication.getPrincipal();
-            for (Role authority : principal.getRoles()) {
-                if (authority.getName().equals(needRole)){
-                    return;
+            Object o1=authentication.getPrincipal();
+            if (o1 instanceof User) {
+                User principal = (User) authentication.getPrincipal();
+                for (Role authority : principal.getRoles()) {
+                    if (authority.getName().equals(needRole)) {
+                        return;
+                    }
                 }
             }
         }

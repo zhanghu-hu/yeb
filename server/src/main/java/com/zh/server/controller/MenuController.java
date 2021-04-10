@@ -36,9 +36,9 @@ public class MenuController {
      */
     @ApiOperation(value = "通过用户id查询菜单列表")
     @GetMapping("/menu")
-    public ResponseBase getMenuByUserID(){
+    public ResponseBase<Menu> getMenuByUserID(){
         //用户id从security框架自带的userDetails（配置类中重写了，等于User）中获取（通过用户名获取，登录的时候放到上下文对象里了）
         List<Menu> menuList=menuService.getMenuBuUserID();
-        return ResponseBase.success(menuList);
+        return new ResponseBase().success(menuList);
     }
 }

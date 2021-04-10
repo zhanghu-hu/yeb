@@ -41,7 +41,7 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
         Page<Employee> page = new Page<>(currentPage, size);
         IPage<Employee> employeeIPage = employeeMapper.getEmployeeByPage(page, employee, beginDateScope);
         PageInfo pageInfo = new PageInfo(employeeIPage.getTotal(), employeeIPage.getRecords());
-        return ResponseBase.success(pageInfo);
+        return new ResponseBase().success(pageInfo);
     }
 
     @Override
@@ -62,7 +62,7 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
             Employee emp=employeeMapper.selectById(employee.getId());
             rabbitTemplate.convertAndSend("mail.welcome",emp);
 
-            return ResponseBase.success(null);
+            return new ResponseBase().success(null);
         }
         return ResponseBase.failed(BasicConstants.HttpStatus.INTERNAL_SERVER_ERROR.code,BasicConstants.HttpStatus.INTERNAL_SERVER_ERROR.msg);
     }

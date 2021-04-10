@@ -39,7 +39,7 @@ public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, Departm
         //执行存储过程
         departmentMapper.addDep(dep);
         if (1 == dep.getResult()) {
-            return ResponseBase.success(dep);
+            return new ResponseBase().success(dep);
         }
 
         return ResponseBase.failed(BasicConstants.HttpStatus.SQL_ERROR.code, BasicConstants.HttpStatus.SQL_ERROR.msg);
@@ -59,7 +59,7 @@ public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, Departm
             return ResponseBase.failed(BasicConstants.HttpStatus.FORBIDDEN.code,"该部门下有员工，删除失败！");
         }
         if (1 == department.getResult()) {
-            return ResponseBase.success(null);
+            return new ResponseBase().success(null);
         }
         return ResponseBase.failed(BasicConstants.HttpStatus.INTERNAL_SERVER_ERROR.code,BasicConstants.HttpStatus.INTERNAL_SERVER_ERROR.msg);
     }

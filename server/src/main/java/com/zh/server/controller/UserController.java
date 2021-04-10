@@ -53,7 +53,7 @@ public class UserController {
         User user=userService.getUserByUsername(username);
         user.setTPassword(null);
         user.setRoles(userService.getRolesByAdminId(user.getTId()));
-        return ResponseBase.success(user);
+        return new ResponseBase().success(user);
     }
 
     @ApiOperation(value = "注册用户")
@@ -66,6 +66,6 @@ public class UserController {
     @PostMapping("/logout")
     public ResponseBase logout(){
         //前端拿到状态码，直接删除请求头的token
-        return ResponseBase.success(null);
+        return new ResponseBase().success(null);
     }
 }

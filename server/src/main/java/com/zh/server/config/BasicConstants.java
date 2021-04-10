@@ -20,7 +20,7 @@ public class BasicConstants {
         INTERNAL_SERVER_ERROR(500, "服务端错误"),
         USERNAME_OR_PASSWORD_ERROR(600,"用户名或密码不对"),
         FORBID_USER(700,"账号被禁用，请联系管理员"),
-        NO_LOGIN(800,"用户未登录或凭证过期"),
+        NO_LOGIN(800,"用户未登录或凭证非法"),
         USERNAME_EXIST(810,"用户名已存在"),
         NO_CODE(900,"验证码不正确");
 

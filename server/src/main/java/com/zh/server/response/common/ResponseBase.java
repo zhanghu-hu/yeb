@@ -12,29 +12,29 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ResponseBase {
+public class ResponseBase<T> {
 
     /**
      * 返回码
      */
-    public Integer code;
+    private Integer code;
 
     /**
      * 返回信息
      */
-    public String message;
+    private String message;
 
     /**
      * 返回数据
      */
-    public Object data;
+    private T data;
 
     /**
      * 成功
      * @param obj
      * @return
      */
-    public static ResponseBase success(Object obj){
+    public ResponseBase success(T obj){
         return new ResponseBase(200,"成功",obj);
     }
 

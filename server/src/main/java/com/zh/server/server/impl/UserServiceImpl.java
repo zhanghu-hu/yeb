@@ -62,11 +62,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public ResponseBase login(LoginRequest loginRequest, HttpServletRequest request) {
         //校验验证码
-        String captcha=(String) request.getSession().getAttribute("captcha");
+        String captcha = (String) request.getSession().getAttribute("captcha");
         //!captcha.equalsIgnoreCase(loginRequest.getCode()) 忽略大小写去比较字符是否相等
         //验证码是在生成的时候放入响应会话的
-        if (StringUtils.isEmpty(loginRequest.getCode())||!captcha.equalsIgnoreCase(loginRequest.getCode())){
-            return ResponseBase.failed(BasicConstants.HttpStatus.NO_CODE.code,BasicConstants.HttpStatus.NO_CODE.msg);
+        if (captcha == null || StringUtils.isEmpty(loginRequest.getCode()) || !captcha.equalsIgnoreCase(loginRequest.getCode())) {
+            return ResponseBase.failed(BasicConstants.HttpStatus.NO_CODE.code, BasicConstants.HttpStatus.NO_CODE.msg);
         }
 
         //登录 userDetailsService的loadUserByUsername方法在securityConfig配置类里有被重写,UserDetails=User
@@ -87,27 +87,27 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         String token = jwtToken.getToken(userDetails);
         Map<String, String> tokenMap = new HashMap<>();
         tokenMap.put(authorization, token);
-        tokenMap.put("tokenHead",tokenHead);
-        return ResponseBase.success(tokenMap);
+        tokenMap.put("tokenHead", tokenHead);
+        return new ResponseBase().success(tokenMap);
     }
 
     @Override
     public User getUserByUsername(String username) {
-        QueryWrapper<User> wrapper=new QueryWrapper<>();
-        wrapper.eq("t_username",username);
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        wrapper.eq("t_username", username);
         return userMapper.selectOne(wrapper);
     }
 
     @Override
     @Transactional(rollbackFor = RuntimeException.class) //主程序入口也要开启事务控制
     public ResponseBase add(User user) {
-        User userExist=userMapper.selectOne(new QueryWrapper<User>().eq("t_username",user.getTUsername()));
-        if (userExist!=null){
-            return ResponseBase.failed(BasicConstants.HttpStatus.USERNAME_EXIST.code,BasicConstants.HttpStatus.USERNAME_EXIST.msg);
+        User userExist = userMapper.selectOne(new QueryWrapper<User>().eq("t_username", user.getTUsername()));
+        if (userExist != null) {
+            return ResponseBase.failed(BasicConstants.HttpStatus.USERNAME_EXIST.code, BasicConstants.HttpStatus.USERNAME_EXIST.msg);
         }
         user.setTPassword(passwordEncoder.encode(user.getTPassword()));
         userMapper.insert(user);
-        return ResponseBase.success(user);
+        return new ResponseBase().success(user);
     }
 
     @Override
@@ -118,8 +118,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public List<User> getAllUsers(String keywords) {
 
-        QueryWrapper<User> wrapper=new QueryWrapper<>();
-        wrapper.like("t_name",keywords);
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        wrapper.like("t_name", keywords);
         return userMapper.selectList(wrapper);
     }
 }

@@ -13,6 +13,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.session.SessionRegistry;
+import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -78,9 +80,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         //使用jwt不需要csrf
         http.csrf().disable()
-                //基于token，不需要session
+//                基于token，不需要session
                 .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)//禁用session
                 .and()
                 .authorizeRequests()
                 //允许登录访问
@@ -103,12 +105,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //禁用缓存
                 .headers()
                 .cacheControl();
+
         //添加jwt登录授权过滤器
         http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
         //添加自定义未授权和未登录结果返回
         http.exceptionHandling()
                 .accessDeniedHandler(deniedHandler)
                 .authenticationEntryPoint(entryPoint);
+
     }
 
 

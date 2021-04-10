@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -27,11 +28,11 @@ import lombok.experimental.Accessors;
 @TableName("t_menu")
 @ApiModel(value="Menu对象", description="")
 public class Menu implements Serializable {
+    private static final long serialVersionUID = 1156086106985L;
 
-    private static final long serialVersionUID = 1L;
-
-    @ApiModelProperty(name = "id",value = "主键",dataType = "Integer")
     @TableId(value = "id",type = IdType.AUTO)
+    @ApiModelProperty(value = "主键")
+    @JsonIgnore
     private Integer id;
 
     @ApiModelProperty(value = "url")
@@ -46,20 +47,20 @@ public class Menu implements Serializable {
     @ApiModelProperty(value = "菜单名")
     private String name;
 
-    @ApiModelProperty(value = "图标")
     @TableField("iconCls")
+    @ApiModelProperty(value = "图标")
     private String iconCls;
 
-    @ApiModelProperty(value = "是否保持激活")
     @TableField("keepAlive")
+    @ApiModelProperty(value = "是否保持激活")
     private Boolean keepAlive;
 
-    @ApiModelProperty(value = "是否请求权限")
     @TableField("requireAuth")
+    @ApiModelProperty(value = "是否请求权限")
     private Boolean requireAuth;
 
-    @ApiModelProperty(value = "父id")
     @TableField("parentId")
+    @ApiModelProperty(value = "父id")
     private Integer parentId;
 
     @ApiModelProperty(value = "是否启用")
@@ -68,11 +69,11 @@ public class Menu implements Serializable {
     /**
      * crud忽略字段
      */
-    @ApiModelProperty(value = "子菜单")
     @TableField(exist = false)
+    @ApiModelProperty(value = "子菜单")
     private List<Menu> children;
 
-    @ApiModelProperty(value = "角色列表")
     @TableField(exist = false)
+    @ApiModelProperty(value = "角色列表")
     private List<Role> roles;
 }
