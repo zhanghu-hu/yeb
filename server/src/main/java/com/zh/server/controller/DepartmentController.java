@@ -27,9 +27,9 @@ public class DepartmentController {
 
     @ApiOperation(value = "获取所有部门（mybatis逐级递归）")
     @GetMapping("/all")
-    public ResponseBase getAllDepartments(){
+    public ResponseBase<Department> getAllDepartments(){
 
-        return new ResponseBase().success(departmentService.getAllDepartments());
+        return ResponseBase.success(departmentService.getAllDepartments());
     }
 
     @ApiOperation(value = "添加部门（牵连的数据表较多，使用了存储过程）")

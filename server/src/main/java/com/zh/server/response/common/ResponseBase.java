@@ -34,7 +34,7 @@ public class ResponseBase<T> {
      * @param obj
      * @return
      */
-    public ResponseBase success(T obj){
+    public static  ResponseBase success(Object obj){
         return new ResponseBase(200,"成功",obj);
     }
 
