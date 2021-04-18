@@ -66,6 +66,7 @@ public class User implements Serializable, UserDetails {
     private String tPassword;
 
     @ApiModelProperty(value = "用户头像")
+    @TableField("t_userFace")
     private String tUserFace;
 
     @ApiModelProperty(value = "备注")

@@ -38,42 +38,42 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of t_admin
 -- ----------------------------
-INSERT INTO `t_admin` VALUES (1, '系统管理员', '13812361398', '71937538', '香港特别行政区强县长寿柳州路p座123', 1, 'admin', '$2a$10$ogvUqZZAxrBwrmVI/e7.SuFYyx8my8d.9zJ6bs9lPKWvbD9eefyCe', 'http://192.168.10.100:8888/group1/M00/00/00/wKgKZF6oHzuAXnw9AABaLsrkrQQ148.jpg', NULL);
-INSERT INTO `t_admin` VALUES (2, '何淑华', '18875971675', '41413109', '河北省秀荣市萧山长沙街p座 737268', 0, 'taomeng', '$2a$10$oE39aG10kB/rFu2vQeCJTu/V/v4n6DRR0f8WyXRiAYvBpmadoOBE.', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585830947922&di=60b35821fb9112d0aad6915efe982c8d&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201703%2F26%2F20170326161532_aGteC.jpeg', NULL);
-INSERT INTO `t_admin` VALUES (3, '安淑华123', '14588110811', '50603155', '山东省凤英县长寿银川街l座', 1, 'naqiao', '$2a$10$oE39aG10kB/rFu2vQeCJTu/V/v4n6DRR0f8WyXRiAYvBpmadoOBE.', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1517070040185&di=be0375e0c3db6c311b837b28c208f318&imgtype=0&src=http%3A%2F%2Fimg2.soyoung.com%2Fpost%2F20150213%2F6%2F20150213141918532.jpg', NULL);
-INSERT INTO `t_admin` VALUES (4, '林宇', '15761248727', '25546253', '宁夏回族自治区帆市翔安昆明路b座 672985', 0, 'leisu', '$2a$10$oE39aG10kB/rFu2vQeCJTu/V/v4n6DRR0f8WyXRiAYvBpmadoOBE.', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585830829995&di=0fc5f8313a734b401d20a57bc9bdd421&imgtype=0&src=http%3A%2F%2Fpic4.zhimg.com%2F50%2Fv2-7fece9a613445edb78271216c8c20c6d_hd.jpg', NULL);
-INSERT INTO `t_admin` VALUES (5, '武军', '18030710396', '27523842', '宁夏回族自治区秀兰县涪城邯郸路t座 618651', 0, 'hanli', '$2a$10$oE39aG10kB/rFu2vQeCJTu/V/v4n6DRR0f8WyXRiAYvBpmadoOBE.', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585830877372&di=9ae7236e73ff24c756ac30722b6e84b1&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201704%2F10%2F20170410095843_SEvMy.thumb.700_0.jpeg', NULL);
+INSERT INTO `sys_user` VALUES (1, '系统管理员', '13812361398', '71937538', '香港特别行政区强县长寿柳州路p座123', 1, 'admin', '$2a$10$ogvUqZZAxrBwrmVI/e7.SuFYyx8my8d.9zJ6bs9lPKWvbD9eefyCe', 'http://192.168.10.100:8888/group1/M00/00/00/wKgKZF6oHzuAXnw9AABaLsrkrQQ148.jpg', NULL);
+INSERT INTO `sys_user` VALUES (2, '何淑华', '18875971675', '41413109', '河北省秀荣市萧山长沙街p座 737268', 0, 'taomeng', '$2a$10$oE39aG10kB/rFu2vQeCJTu/V/v4n6DRR0f8WyXRiAYvBpmadoOBE.', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585830947922&di=60b35821fb9112d0aad6915efe982c8d&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201703%2F26%2F20170326161532_aGteC.jpeg', NULL);
+INSERT INTO `sys_user` VALUES (3, '安淑华123', '14588110811', '50603155', '山东省凤英县长寿银川街l座', 1, 'naqiao', '$2a$10$oE39aG10kB/rFu2vQeCJTu/V/v4n6DRR0f8WyXRiAYvBpmadoOBE.', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1517070040185&di=be0375e0c3db6c311b837b28c208f318&imgtype=0&src=http%3A%2F%2Fimg2.soyoung.com%2Fpost%2F20150213%2F6%2F20150213141918532.jpg', NULL);
+INSERT INTO `sys_user` VALUES (4, '林宇', '15761248727', '25546253', '宁夏回族自治区帆市翔安昆明路b座 672985', 0, 'leisu', '$2a$10$oE39aG10kB/rFu2vQeCJTu/V/v4n6DRR0f8WyXRiAYvBpmadoOBE.', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585830829995&di=0fc5f8313a734b401d20a57bc9bdd421&imgtype=0&src=http%3A%2F%2Fpic4.zhimg.com%2F50%2Fv2-7fece9a613445edb78271216c8c20c6d_hd.jpg', NULL);
+INSERT INTO `sys_user` VALUES (5, '武军', '18030710396', '27523842', '宁夏回族自治区秀兰县涪城邯郸路t座 618651', 0, 'hanli', '$2a$10$oE39aG10kB/rFu2vQeCJTu/V/v4n6DRR0f8WyXRiAYvBpmadoOBE.', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585830877372&di=9ae7236e73ff24c756ac30722b6e84b1&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201704%2F10%2F20170410095843_SEvMy.thumb.700_0.jpeg', NULL);
 
 -- ----------------------------
 -- Table structure for t_admin_role
 -- ----------------------------
-DROP TABLE IF EXISTS `t_admin_role`;
-CREATE TABLE `t_admin_role`  (
+DROP TABLE IF EXISTS `t_user_role`;
+CREATE TABLE `t_user_role`  (
   `id` INT(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
   `adminId` INT(11) NULL DEFAULT NULL COMMENT '用户id',
   `rid` INT(11) NULL DEFAULT NULL COMMENT '权限id',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `rid`(`rid`) USING BTREE,
   INDEX `adminId`(`adminId`) USING BTREE,
-  CONSTRAINT `t_admin_role_ibfk_1` FOREIGN KEY (`adminId`) REFERENCES `sys_admin` (`t_id`) ON DELETE CASCADE ON UPDATE RESTRICT,
+  CONSTRAINT `t_admin_role_ibfk_1` FOREIGN KEY (`adminId`) REFERENCES `sys_user` (`t_id`) ON DELETE CASCADE ON UPDATE RESTRICT,
   CONSTRAINT `t_admin_role_ibfk_2` FOREIGN KEY (`rid`) REFERENCES `t_role` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = INNODB AUTO_INCREMENT = 68 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_admin_role
 -- ----------------------------
-INSERT INTO `t_admin_role` VALUES (2, 5, 4);
-INSERT INTO `t_admin_role` VALUES (3, 5, 3);
-INSERT INTO `t_admin_role` VALUES (4, 5, 2);
-INSERT INTO `t_admin_role` VALUES (5, 4, 3);
-INSERT INTO `t_admin_role` VALUES (6, 4, 2);
-INSERT INTO `t_admin_role` VALUES (7, 4, 4);
-INSERT INTO `t_admin_role` VALUES (8, 4, 5);
-INSERT INTO `t_admin_role` VALUES (16, 1, 6);
-INSERT INTO `t_admin_role` VALUES (55, 3, 3);
-INSERT INTO `t_admin_role` VALUES (56, 3, 4);
-INSERT INTO `t_admin_role` VALUES (67, 2, 3);
-INSERT INTO `t_admin_role` VALUES (68, 2, 4);
+INSERT INTO `t_user_role` VALUES (2, 5, 4);
+INSERT INTO `t_user_role` VALUES (3, 5, 3);
+INSERT INTO `t_user_role` VALUES (4, 5, 2);
+INSERT INTO `t_user_role` VALUES (5, 4, 3);
+INSERT INTO `t_user_role` VALUES (6, 4, 2);
+INSERT INTO `t_user_role` VALUES (7, 4, 4);
+INSERT INTO `t_user_role` VALUES (8, 4, 5);
+INSERT INTO `t_user_role` VALUES (16, 1, 6);
+INSERT INTO `t_user_role` VALUES (55, 3, 3);
+INSERT INTO `t_user_role` VALUES (56, 3, 4);
+INSERT INTO `t_user_role` VALUES (67, 2, 3);
+INSERT INTO `t_user_role` VALUES (68, 2, 4);
 
 -- ----------------------------
 -- Table structure for t_appraise
@@ -333,13 +333,13 @@ CREATE TABLE `t_joblevel`  (
   `id` INT(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
   `name` VARCHAR(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '职称名称',
   `titleLevel` ENUM('正高级','副高级','中级','初级','员级') CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '职称等级',
-  `createDate` TIMESTAMP(0) NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+  `createDate` DATE NULL DEFAULT  NULL COMMENT '创建时间',
   `enabled` TINYINT(1) NULL DEFAULT 1 COMMENT '是否启用',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = INNODB AUTO_INCREMENT = 33 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
--- Records of t_joblevel
+-- Records of t_joblevel`sys_user`
 -- ----------------------------
 INSERT INTO `t_joblevel` VALUES (1, '教授', '正高级', '2020-03-31 16:20:34', 1);
 INSERT INTO `t_joblevel` VALUES (2, '副教授', '副高级', '2020-03-31 16:20:34', 1);
@@ -361,15 +361,15 @@ CREATE TABLE `t_mail_log`  (
   `routeKey` VARCHAR(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '路由键',
   `exchange` VARCHAR(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '交换机',
   `count` INT(1) NULL DEFAULT NULL COMMENT '重试次数',
-  `tryTime` DATETIME(0) NULL DEFAULT NULL COMMENT '重试时间',
-  `createTime` DATETIME(0) NULL DEFAULT NULL COMMENT '创建时间',
-  `updateTime` DATETIME(0) NULL DEFAULT NULL COMMENT '更新时间',
+  `tryTime` DATE NULL DEFAULT NULL COMMENT '重试时间',
+  `createTime` DATE NULL DEFAULT NULL COMMENT '创建时间',
+  `updateTime` DATE NULL DEFAULT NULL COMMENT '更新时间',
   UNIQUE INDEX `msgId`(`msgId`) USING BTREE
 ) ENGINE = INNODB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for t_menu
--- ----------------------------
+-- ----------------------------`sys_user`
 DROP TABLE IF EXISTS `t_menu`;
 CREATE TABLE `t_menu`  (
   `id` INT(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
