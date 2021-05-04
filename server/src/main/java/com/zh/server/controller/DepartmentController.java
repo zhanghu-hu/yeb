@@ -29,7 +29,7 @@ public class DepartmentController {
     @GetMapping("/all")
     public ResponseBase<Department> getAllDepartments(){
 
-        return ResponseBase.success(departmentService.getAllDepartments());
+        return new ResponseBase().success(departmentService.getAllDepartments());
     }
 
     @ApiOperation(value = "添加部门（牵连的数据表较多，使用了存储过程）")

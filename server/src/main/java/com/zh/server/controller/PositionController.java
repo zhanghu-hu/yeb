@@ -22,7 +22,7 @@ import java.util.List;
  * @author ZH
  * @since 2021-01-22
  */
-@Api(tags = "职称管理")
+@Api(tags = "职位管理")
 @RestController
 @RequestMapping("/position")
 public class PositionController {

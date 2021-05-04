@@ -76,6 +76,7 @@ public class EmployeeController {
     }
 
     @ApiOperation(value = "导出员工数据")
+    //以流形式输出
     @GetMapping(value = "/export", produces = "application/octet-stream")
     public void exportEmployee(HttpServletResponse response) {
         List<Employee> list = employeeService.getEmployee(null);

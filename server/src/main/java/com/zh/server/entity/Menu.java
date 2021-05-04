@@ -32,7 +32,7 @@ public class Menu implements Serializable {
 
     @TableId(value = "id",type = IdType.AUTO)
     @ApiModelProperty(value = "主键")
-    @JsonIgnore
+//    @JsonIgnore//不进行json序列化
     private Integer id;
 
     @ApiModelProperty(value = "url")

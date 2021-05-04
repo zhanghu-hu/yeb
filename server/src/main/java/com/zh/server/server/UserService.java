@@ -55,4 +55,19 @@ public interface UserService extends IService<User> {
      * @return
      */
     List<User> getAllUsers(String keywords);
+
+    /**
+     * 获取所有操作员
+     * @param keywords
+     * @return
+     */
+    List<User> getAllAdmins(String keywords);
+
+    /**
+     * 更新操作员角色
+     * @param adminId
+     * @param rids
+     * @return
+     */
+    ResponseBase updateAdminRole(Integer adminId,Integer[] rids);
 }

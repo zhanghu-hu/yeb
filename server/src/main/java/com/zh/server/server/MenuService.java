@@ -28,4 +28,9 @@ public interface MenuService extends IService<Menu> {
      */
     List<Menu> getMenusWithRole();
 
+    /**
+     * 获取所有菜单
+     * @return
+     */
+    List<Menu> getAllMenus();
 }

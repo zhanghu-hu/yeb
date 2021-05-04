@@ -6,8 +6,10 @@ import com.zh.server.config.BasicConstants;
 import com.zh.server.config.security.JwtToken;
 import com.zh.server.entity.Role;
 import com.zh.server.entity.User;
+import com.zh.server.entity.UserRole;
 import com.zh.server.mapper.RoleMapper;
 import com.zh.server.mapper.UserMapper;
+import com.zh.server.mapper.UserRoleMapper;
 import com.zh.server.request.user.LoginRequest;
 import com.zh.server.response.common.ResponseBase;
 import com.zh.server.server.UserService;
@@ -49,6 +51,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Autowired
     private RoleMapper roleMapper;
+
+    @Autowired
+    private UserRoleMapper userRoleMapper;
 
     @Autowired
     private JwtToken jwtToken;
@@ -121,5 +126,33 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         QueryWrapper<User> wrapper = new QueryWrapper<>();
         wrapper.like("t_name", keywords);
         return userMapper.selectList(wrapper);
+    }
+
+    /**
+     * 获取所有操作员
+     * @param keywords
+     * @return
+     */
+    @Override
+    public List<User> getAllAdmins(String keywords) {
+        Integer id = ((User)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getTId();
+        return userMapper.getAllAdmins(id,keywords);
+    }
+
+    /**
+     * 更新操作员角色
+     * @param adminId
+     * @param rids
+     * @return
+     */
+    @Override
+    @Transactional
+    public ResponseBase updateAdminRole(Integer adminId, Integer[] rids) {
+        userRoleMapper.delete(new QueryWrapper<UserRole>().eq("adminId",adminId));
+        Integer result = userRoleMapper.addRole(adminId, rids);
+        if (rids.length == result){
+            return new ResponseBase().success("更新成功");
+        }
+        return ResponseBase.failed(BasicConstants.HttpStatus.SQL_ERROR.code,BasicConstants.HttpStatus.SQL_ERROR.msg);
     }
 }

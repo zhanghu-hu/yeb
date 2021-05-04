@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * <p>
@@ -22,7 +21,7 @@ import java.util.List;
  * @author ZH
  * @since 2021-01-22
  */
-@Api(tags = "职称接口")
+@Api(tags = "职称管理")
 @RestController
 @RequestMapping("/joblevel")
 public class JoblevelController {
@@ -34,7 +33,7 @@ public class JoblevelController {
     @GetMapping("/")
     public ResponseBase<Joblevel> getAllJoblevel(){
 
-        return ResponseBase.success(joblevelService.list());
+        return new ResponseBase().success(joblevelService.list());
     }
 
     @ApiOperation(value = "添加职称")
@@ -42,7 +41,7 @@ public class JoblevelController {
     public ResponseBase addJoblevel(@RequestBody Joblevel joblevel){
         joblevel.setCreateDate(LocalDateTime.now());
         if (joblevelService.save(joblevel)){
-            return ResponseBase.success("添加成功");
+            return new ResponseBase().success("添加成功");
         }
         return ResponseBase.failed(BasicConstants.HttpStatus.SQL_ERROR.code,BasicConstants.HttpStatus.SQL_ERROR.msg);
     }
@@ -52,7 +51,7 @@ public class JoblevelController {
     public ResponseBase updateJoblevel(@RequestBody Joblevel joblevel){
         System.out.println(joblevel);
         if (joblevelService.updateById(joblevel)){
-            return ResponseBase.success("修改成功");
+            return new ResponseBase().success("修改成功");
         }
         return ResponseBase.failed(BasicConstants.HttpStatus.SQL_ERROR.code,BasicConstants.HttpStatus.SQL_ERROR.msg);
     }
@@ -61,7 +60,7 @@ public class JoblevelController {
     @DeleteMapping("/{id}")
     public ResponseBase deleteJobLevel(@PathVariable Integer id){
         if (joblevelService.removeById(id)){
-            return ResponseBase.success("删除成功");
+            return new ResponseBase().success("删除成功");
         }
         return ResponseBase.failed(BasicConstants.HttpStatus.SQL_ERROR.code,BasicConstants.HttpStatus.SQL_ERROR.msg);
     }
@@ -70,7 +69,7 @@ public class JoblevelController {
     @DeleteMapping("/")
     public ResponseBase deleteJoblevelByIds(Integer[] ids){
         if (joblevelService.removeByIds(Arrays.asList(ids))){
-            return ResponseBase.success("删除成功");
+            return new ResponseBase().success("删除成功");
         }
         return ResponseBase.failed(BasicConstants.HttpStatus.SQL_ERROR.code,BasicConstants.HttpStatus.SQL_ERROR.msg);
     }

@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ResponseBase<T> {
+public  class ResponseBase<T> {
 
     /**
      * 返回码
@@ -34,7 +34,7 @@ public class ResponseBase<T> {
      * @param obj
      * @return
      */
-    public static  ResponseBase success(Object obj){
+    public ResponseBase success(T obj){
         return new ResponseBase(200,"成功",obj);
     }
 
