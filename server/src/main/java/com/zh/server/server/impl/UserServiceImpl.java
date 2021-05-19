@@ -123,9 +123,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public List<User> getAllUsers(String keywords) {
 
-        QueryWrapper<User> wrapper = new QueryWrapper<>();
-        wrapper.like("t_name", keywords);
-        return userMapper.selectList(wrapper);
+        List<User> uuu=userMapper.getAllAdmins(null,keywords);
+        System.out.println(uuu);
+        return uuu;
     }
 
     /**

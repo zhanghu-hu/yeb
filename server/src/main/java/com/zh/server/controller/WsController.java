@@ -3,7 +3,6 @@ package com.zh.server.controller;
 import com.zh.server.entity.User;
 import com.zh.server.response.webSocket.ChatMsg;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -37,6 +36,6 @@ public class WsController {
         chatMsg.setFrom(user.getTUsername());
         chatMsg.setFormNickName(user.getTName());
         chatMsg.setDate(LocalDateTime.now());
-        simpMessagingTemplate.convertAndSendToUser(chatMsg.getTo(),"/queue/chat",chatMsg);
+        simpMessagingTemplate.convertAndSendToUser(chatMsg.getTo(),"/queue/chat",chatMsg);//将消息转到/queue/chat
     }
 }

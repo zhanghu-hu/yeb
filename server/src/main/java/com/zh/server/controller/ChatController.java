@@ -1,6 +1,7 @@
 package com.zh.server.controller;
 
 import com.zh.server.entity.User;
+import com.zh.server.response.common.ResponseBase;
 import com.zh.server.server.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -26,7 +27,7 @@ public class ChatController {
 
     @ApiOperation(value = "获取所有操作员")
     @GetMapping("/allUser")
-    public List<User> getAllUsers(String keywords){
-        return userService.getAllUsers(keywords);
+    public ResponseBase<User> getAllUsers(String keywords){
+        return new ResponseBase().success(userService.getAllUsers(keywords));
     }
 }

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.zh.server.config.json.CustomAuthorityDeserializer;
 import io.swagger.annotations.ApiModel;
@@ -74,6 +75,7 @@ public class User implements Serializable, UserDetails {
 
     @ApiModelProperty(value = "角色")
     @TableField(exist = false)
+    @JsonInclude(JsonInclude.Include.NON_NULL)  //为null时不参与json序列化，避免错误
     private List<Role> roles;
 
     /**
@@ -84,8 +86,11 @@ public class User implements Serializable, UserDetails {
     @JsonDeserialize(using = CustomAuthorityDeserializer.class)
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
-        List<SimpleGrantedAuthority> authorities=roles
-                .stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
+        List<SimpleGrantedAuthority> authorities=null;
+        if (roles!=null) {
+            authorities = roles
+                    .stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
+        }
         return authorities;
     }
 
