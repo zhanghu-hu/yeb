@@ -46,7 +46,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     private UserDetailsService userDetailsService;
 
     /**
-     * 添加这个Endpoint(断电)，这样网页可以通过WebSocket连接上服务
+     * 添加这个Endpoint(端点)，这样网页可以通过WebSocket连接上服务
      * 相当于我们配置WebSocket的服务地址，并且可以指定是否使用socketJS
      *
      * @param registry
