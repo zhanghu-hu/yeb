@@ -6,19 +6,36 @@ server:
 spring:
   #数据源配置
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/yyb?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
-    username: root
-    password: sa123456
-    hikari:  #springboot自带的
-      pool-name: DateHikariCP #连接池名
-      minimum-idle: 5 #最小空闲连接数
-      idle-timeout: 180000 #空闲连接存活最大时间，默认时间600000（10min）
-      maximum-pool-size: 10 #最大连接数，默认10
-      auto-commit: true #从连接池返回的连接自动提交
-      max-lifetime: 1000000 #连接最大存活时间，0表示永久存活，默认1000000（30min）
-      connection-timeout: 30000 #连接超时时间，默认30000（30s）
-      connection-test-query: SELECT 1 #测试连接是否可用的查询语句
+    db1:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      # url: jdbc:mysql://localhost:3306/yyb?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+      jdbc-url: jdbc:mysql://localhost:3306/yyb?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+      username: root
+      password: sa123456
+      hikari:  #springboot自带的
+        pool-name: DateHikariCP #连接池名
+        minimum-idle: 5 #最小空闲连接数
+        idle-timeout: 180000 #空闲连接存活最大时间，默认时间600000（10min）
+        maximum-pool-size: 10 #最大连接数，默认10
+        auto-commit: true #从连接池返回的连接自动提交
+        max-lifetime: 1000000 #连接最大存活时间，0表示永久存活，默认1000000（30min）
+        connection-timeout: 30000 #连接超时时间，默认30000（30s）
+        connection-test-query: SELECT 1 #测试连接是否可用的查询语句
+    db2:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://localhost:3306/gis?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+      username: root
+      password: sa123456
+      hikari:  #springboot自带的
+        pool-name: DateHikariCP #连接池名
+        minimum-idle: 5 #最小空闲连接数
+        idle-timeout: 180000 #空闲连接存活最大时间，默认时间600000（10min）
+        maximum-pool-size: 10 #最大连接数，默认10
+        auto-commit: true #从连接池返回的连接自动提交
+        max-lifetime: 1000000 #连接最大存活时间，0表示永久存活，默认1000000（30min）
+        connection-timeout: 30000 #连接超时时间，默认30000（30s）
+        connection-test-query: SELECT 1 #测试连接是否可用的查询语句
+
   #rabbitmq配置
   rabbitmq:
     username: admin
@@ -35,7 +52,7 @@ spring:
 
 mybatis-plus:
   type-aliases-package: com.zh.server.entity #实体位置
-  mapper-locations: classpath:mapper/**.xml
+  mapper-locations: classpath:mapper/**/*.xml
   configuration:
     map-underscore-to-camel-case: true #开启驼峰命名
 
@@ -48,3 +65,10 @@ jwt:
   tokenHeader: Authorization #JWT存储的请求头
   expiration: 604800  #JWT的超期时间
   tokenHead: Bearer #JWT负载中拿到的开头 例如：Bearer token（即Bearer+空格+token令牌）
+
+#根据zoom判定GeoHash位数
+zoom:
+  one: 1,6,1
+  two: 7,8,3
+  three: 9,11,4
+  four: 12,15,6

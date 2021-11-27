@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zh.server.config.BasicConstants;
 import com.zh.server.entity.Employee;
-import com.zh.server.mapper.EmployeeMapper;
+import com.zh.server.mapper.yyb.EmployeeMapper;
 import com.zh.server.response.common.ResponseBase;
 import com.zh.server.response.page.PageInfo;
 import com.zh.server.server.EmployeeService;
@@ -40,7 +40,7 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
         //开启分页
         Page<Employee> page = new Page<>(currentPage, size);
         IPage<Employee> employeeIPage = employeeMapper.getEmployeeByPage(page, employee, beginDateScope);
-        PageInfo pageInfo = new PageInfo(employeeIPage.getTotal(), employeeIPage.getRecords());
+        PageInfo<Employee> pageInfo = new PageInfo(employeeIPage.getTotal(), employeeIPage.getRecords());
         return new ResponseBase().success(pageInfo);
     }
 

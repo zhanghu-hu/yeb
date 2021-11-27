@@ -2,11 +2,13 @@ package com.zh.server.server.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zh.server.entity.MenuRole;
-import com.zh.server.mapper.MenuRoleMapper;
+import com.zh.server.mapper.yyb.MenuRoleMapper;
 import com.zh.server.server.MenuRoleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>
@@ -39,5 +41,10 @@ public class MenuRoleServiceImpl extends ServiceImpl<MenuRoleMapper, MenuRole> i
             return "更新成功";
         }
         return "更新失败";
+    }
+
+    @Override
+    public List<MenuRole> listByRid(Integer rid) {
+        return menuRoleMapper.listByRid(rid);
     }
 }

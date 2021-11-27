@@ -32,8 +32,7 @@ public class JoblevelController {
     @ApiOperation(value = "查询所有职称")
     @GetMapping("/")
     public ResponseBase<Joblevel> getAllJoblevel(){
-
-        return new ResponseBase().success(joblevelService.list());
+        return new ResponseBase().success(joblevelService.listALL());
     }
 
     @ApiOperation(value = "添加职称")

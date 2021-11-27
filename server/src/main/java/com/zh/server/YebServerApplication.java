@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @SpringBootApplication
 @EnableTransactionManagement //开启事务
-@MapperScan("com.zh.server.mapper")  //开启映射文件扫描
+//@MapperScan("com.zh.server.mapper")  //开启映射文件扫描
 public class YebServerApplication {
     public static void main(String[] args) {
         SpringApplication.run(YebServerApplication.class,args);

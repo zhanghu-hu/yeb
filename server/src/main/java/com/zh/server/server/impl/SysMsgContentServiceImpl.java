@@ -1,7 +1,7 @@
 package com.zh.server.server.impl;
 
 import com.zh.server.entity.SysMsgContent;
-import com.zh.server.mapper.SysMsgContentMapper;
+import com.zh.server.mapper.yyb.SysMsgContentMapper;
 import com.zh.server.server.SysMsgContentService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;

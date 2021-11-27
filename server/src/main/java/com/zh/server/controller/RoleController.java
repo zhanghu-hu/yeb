@@ -2,7 +2,6 @@ package com.zh.server.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zh.server.config.BasicConstants;
-import com.zh.server.entity.Menu;
 import com.zh.server.entity.MenuRole;
 import com.zh.server.entity.Role;
 import com.zh.server.response.common.ResponseBase;
@@ -14,7 +13,6 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -40,7 +38,7 @@ public class RoleController {
     @ApiOperation(value = "查询所有角色")
     @GetMapping("/")
     public ResponseBase<Role> getAllRoles() {
-        return new ResponseBase().success(roleService.list());
+        return new ResponseBase().success(roleService.listALL());
     }
 
     @ApiOperation(value = "添加角色")
@@ -73,8 +71,11 @@ public class RoleController {
     @ApiOperation(value = "根据角色ID查询菜单ID")
     @GetMapping("/mid/{rid}")
     private ResponseBase getMidByRid(@PathVariable Integer rid) {
-        return new ResponseBase().success(menuRoleService.list(new QueryWrapper<MenuRole>().eq("rid", rid)).stream()
-                .map(MenuRole::getMid).collect(Collectors.toList()));
+        //启用多数据源后，mybatis-plus自带多方法找不到映射文件
+//        return new ResponseBase().success(menuRoleService.list(new QueryWrapper<MenuRole>().eq("rid", rid)).stream()
+//                .map(MenuRole::getMid).collect(Collectors.toList()));
+        //单纯的将实体结果集-》mid的List集合（不去重）
+        return new ResponseBase().success(menuRoleService.listByRid(rid).stream().map(MenuRole::getMid).collect(Collectors.toList()));
     }
 
     @ApiOperation(value = "更新角色菜单")

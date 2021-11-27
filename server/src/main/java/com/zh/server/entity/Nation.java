@@ -38,5 +38,4 @@ public class Nation implements Serializable {
     @Excel(name = "民族")
     private String name;
 
-
 }

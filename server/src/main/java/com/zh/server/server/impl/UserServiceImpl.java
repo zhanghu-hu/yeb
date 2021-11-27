@@ -7,9 +7,9 @@ import com.zh.server.config.security.JwtToken;
 import com.zh.server.entity.Role;
 import com.zh.server.entity.User;
 import com.zh.server.entity.UserRole;
-import com.zh.server.mapper.RoleMapper;
-import com.zh.server.mapper.UserMapper;
-import com.zh.server.mapper.UserRoleMapper;
+import com.zh.server.mapper.yyb.RoleMapper;
+import com.zh.server.mapper.yyb.UserMapper;
+import com.zh.server.mapper.yyb.UserRoleMapper;
 import com.zh.server.request.user.LoginRequest;
 import com.zh.server.response.common.ResponseBase;
 import com.zh.server.server.UserService;
@@ -98,15 +98,17 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public User getUserByUsername(String username) {
-        QueryWrapper<User> wrapper = new QueryWrapper<>();
-        wrapper.eq("t_username", username);
-        return userMapper.selectOne(wrapper);
+        //多数据源时，这种方法找不到对应多映射方法
+//        QueryWrapper<User> wrapper = new QueryWrapper<>();
+//        wrapper.eq("t_username", username);
+//        return userMapper.selectOne(wrapper);
+        return userMapper.selectByUsername(username);
     }
 
     @Override
     @Transactional(rollbackFor = RuntimeException.class) //主程序入口也要开启事务控制
     public ResponseBase add(User user) {
-        User userExist = userMapper.selectOne(new QueryWrapper<User>().eq("t_username", user.getTUsername()));
+        User userExist = userMapper.selectByUsername(user.getTUsername());
         if (userExist != null) {
             return ResponseBase.failed(BasicConstants.HttpStatus.USERNAME_EXIST.code, BasicConstants.HttpStatus.USERNAME_EXIST.msg);
         }
@@ -148,7 +150,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     @Transactional
     public ResponseBase updateAdminRole(Integer adminId, Integer[] rids) {
-        userRoleMapper.delete(new QueryWrapper<UserRole>().eq("adminId",adminId));
+        //启用多数据源后，这种办法找不到映射文件了
+//        userRoleMapper.delete(new QueryWrapper<UserRole>().eq("adminId",adminId));
+        userRoleMapper.deleteByAdminId(adminId);
         Integer result = userRoleMapper.addRole(adminId, rids);
         if (rids.length == result){
             return new ResponseBase().success("更新成功");

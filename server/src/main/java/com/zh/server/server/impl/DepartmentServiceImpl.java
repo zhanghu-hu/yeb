@@ -2,7 +2,7 @@ package com.zh.server.server.impl;
 
 import com.zh.server.config.BasicConstants;
 import com.zh.server.entity.Department;
-import com.zh.server.mapper.DepartmentMapper;
+import com.zh.server.mapper.yyb.DepartmentMapper;
 import com.zh.server.response.common.ResponseBase;
 import com.zh.server.server.DepartmentService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

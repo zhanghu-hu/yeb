@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * <p>
@@ -32,8 +31,8 @@ public class PositionController {
 
     @ApiOperation(value = "获取职位信息")
     @GetMapping("/")
-    private ResponseBase getAllPosition(){
-        return new ResponseBase().success(positionService.list());
+    private ResponseBase<Position> getAllPosition(){
+        return new ResponseBase().success(positionService.listALL());
     }
 
     @ApiOperation(value = "添加职位信息")

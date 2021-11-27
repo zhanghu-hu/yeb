@@ -1,9 +1,8 @@
 package com.zh.server.server.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zh.server.entity.Menu;
 import com.zh.server.entity.User;
-import com.zh.server.mapper.MenuMapper;
+import com.zh.server.mapper.yyb.MenuMapper;
 import com.zh.server.server.MenuService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

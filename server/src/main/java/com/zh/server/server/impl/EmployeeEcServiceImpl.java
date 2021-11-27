@@ -1,7 +1,7 @@
 package com.zh.server.server.impl;
 
 import com.zh.server.entity.EmployeeEc;
-import com.zh.server.mapper.EmployeeEcMapper;
+import com.zh.server.mapper.yyb.EmployeeEcMapper;
 import com.zh.server.server.EmployeeEcService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;

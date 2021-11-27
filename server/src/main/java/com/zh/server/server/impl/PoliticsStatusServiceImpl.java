@@ -1,7 +1,7 @@
 package com.zh.server.server.impl;
 
 import com.zh.server.entity.PoliticsStatus;
-import com.zh.server.mapper.PoliticsStatusMapper;
+import com.zh.server.mapper.yyb.PoliticsStatusMapper;
 import com.zh.server.server.PoliticsStatusService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;

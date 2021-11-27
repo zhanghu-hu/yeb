@@ -2,7 +2,6 @@ package com.zh.server.controller;
 
 
 import com.zh.server.config.BasicConstants;
-import com.zh.server.entity.Role;
 import com.zh.server.entity.User;
 import com.zh.server.request.user.LoginRequest;
 import com.zh.server.response.common.ResponseBase;
@@ -11,13 +10,11 @@ import com.zh.server.server.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
-import java.util.List;
 
 /**
  * <p>

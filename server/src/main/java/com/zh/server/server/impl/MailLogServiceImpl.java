@@ -1,7 +1,7 @@
 package com.zh.server.server.impl;
 
 import com.zh.server.entity.MailLog;
-import com.zh.server.mapper.MailLogMapper;
+import com.zh.server.mapper.yyb.MailLogMapper;
 import com.zh.server.server.MailLogService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
