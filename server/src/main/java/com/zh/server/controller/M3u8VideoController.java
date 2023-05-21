@@ -75,6 +75,7 @@ public class M3u8VideoController {
 
     @SneakyThrows
     public static void downLoadIndexFile(List<String> tsList, String folderPath, String fileName) {
+        long start = System.currentTimeMillis();
         int size = tsList.size();
         // 拓展多线程下载
         ExecutorService executorService = Executors.newFixedThreadPool(20);
@@ -97,6 +98,12 @@ public class M3u8VideoController {
         }
         executorService.shutdown();
         while (!executorService.awaitTermination(500, TimeUnit.MILLISECONDS)) {
+            long end = System.currentTimeMillis();
+            long time = end - start;
+            if (time > 900000) {
+                executorService.shutdownNow();
+                break;
+            }
         }
         System.out.println(fileName + "片段下载完成，继续运行");
     }
