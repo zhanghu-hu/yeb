@@ -14,4 +14,9 @@ public interface GISService extends IService<Nationwide> {
      * @return
      */
     List<PointResponse> getPointCollection(CurrentRangeRequest currentRangeRequest);
+
+    /**
+     * 将数据存入redis
+     */
+    void toRedis();
 }

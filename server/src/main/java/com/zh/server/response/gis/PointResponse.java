@@ -19,4 +19,16 @@ public class PointResponse extends Nationwide {
 
     @ApiModelProperty(name = "count", value = "聚合数量", dataType = "Integer")
     public Integer count;
+
+    @ApiModelProperty(name = "maxX", value = "外接maxX", dataType = "Double")
+    public Double maxX;
+
+    @ApiModelProperty(name = "maxY", value = "外接maxY", dataType = "Double")
+    public Double maxY;
+
+    @ApiModelProperty(name = "minX", value = "外接minX", dataType = "Double")
+    public Double minX;
+
+    @ApiModelProperty(name = "minY", value = "外接minY", dataType = "Double")
+    public Double minY;
 }

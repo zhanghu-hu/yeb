@@ -23,7 +23,7 @@ import java.util.Date;
  * @author ZH
  * @date 2021-01-29
  */
-@Component
+//@Component
 public class MailReceiver {
 
     private static final Logger log = LoggerFactory.getLogger(MailReceiver.class);

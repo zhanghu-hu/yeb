@@ -15,6 +15,7 @@ public class BasicConstants {
         SUCCESS(200, "成功"),
         SQL_ERROR(300,"数据库异常"),
         SQL_FOREIGN_KEY_ERROE(310,"存在外键，操作失败"),
+        PARAM_ERROR(400,"参数错误"),
         PERMISSION_DENIED(401, "没有权限"),
         FORBIDDEN(403,"禁止操作"),
         INTERNAL_SERVER_ERROR(500, "服务端错误"),

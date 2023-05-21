@@ -47,4 +47,11 @@ public class GISController {
         List<PointResponse> pointList = gisService.getPointCollection(currentRangeRequest);
         return new ResponseBase().success(pointList);
     }
+
+    @GetMapping("/toRedis")
+    @ApiOperation("将数据存入redis")
+    public ResponseBase<String> mysqlToRedis(){
+        gisService.toRedis();
+        return new ResponseBase().success(null);
+    }
 }

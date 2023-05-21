@@ -42,13 +42,32 @@ spring:
     #密码
     password: sa123
     #服务器地址
-    host: 192.168.10.117
+    host: 127.0.0.1
     #端口
     port: 15672
     virtual-host: /
     listener:
       simple:
         acknowledge-mode: manual
+
+  # redis配置
+  redis:
+    database: 0
+    # password: sa123456
+    port: 6379
+    host: 127.0.0.1
+    # 连接超时时间
+    timeout: 1000
+    lettuce:
+      pool:
+        max-active: 9 #连接池最大连接数（推荐主机核心数+1）
+        min-idle: 3 #连接池最小空闲连接
+        max-idle: 9
+        max-wait: 1000 #连接池阻塞的最大等待时间
+      shutdown-timeout: 100 #在关闭客户端连接之前等待任务处理完成的最长时间，在这之后，无论任务是否执行完成，都会被执行器关闭，默认100ms
+  cache:
+    redis:
+      cache-null-values:  false # 不存储空值
 
 mybatis-plus:
   type-aliases-package: com.zh.server.entity #实体位置

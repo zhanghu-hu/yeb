@@ -12,6 +12,7 @@ import com.zh.server.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,11 @@ import java.util.List;
 @Service
 public class GISServiceImpl extends ServiceImpl<GISMapper, Nationwide> implements GISService {
 
+    /**
+     * 每次查询数据库的数量
+     */
+    private Integer limit = 3000;
+
     @Autowired
     private GISMapper gisMapper;
 
@@ -38,6 +44,23 @@ public class GISServiceImpl extends ServiceImpl<GISMapper, Nationwide> implement
     private String threeLevel;
     @Value("${zoom.four}")
     private String fourLevel;
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void toRedis() {
+//        List<Integer> idAndCount = gisMapper.getFirstIdAndCount();
+//        Integer id = idAndCount.get(0);
+//        Integer count = idAndCount.get(1);
+//        while (count > 0) {
+//            Integer num = 0;
+//            if (count - limit > 0)
+//                num = limit;
+//            else
+//                num = count;
+//            //以id倒序排列方便下次获取值
+//            List<Nationwide> nationwideList = gisMapper.getPointData(id, num);
+//        }
+    }
 
     @Override
     public List<PointResponse> getPointCollection(CurrentRangeRequest currentRangeRequest) {
@@ -97,6 +120,12 @@ public class GISServiceImpl extends ServiceImpl<GISMapper, Nationwide> implement
         return result;
     }
 
+    /**
+     * 确定具体的点位数据
+     *
+     * @param minGeoHash
+     * @return
+     */
     private PointResponse getPointData(GeoHash minGeoHash) {
         PointResponse pointData = gisMapper.getClusterPointData(minGeoHash.toBase32());
         if (pointData.getCount() == 1) {

@@ -1,12 +1,10 @@
 package com.zh.server.server.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zh.server.config.BasicConstants;
 import com.zh.server.config.security.JwtToken;
 import com.zh.server.entity.Role;
 import com.zh.server.entity.User;
-import com.zh.server.entity.UserRole;
 import com.zh.server.mapper.yyb.RoleMapper;
 import com.zh.server.mapper.yyb.UserMapper;
 import com.zh.server.mapper.yyb.UserRoleMapper;
