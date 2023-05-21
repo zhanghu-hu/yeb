@@ -13,12 +13,15 @@ public class BasicConstants {
     public enum HttpStatus {
 
         SUCCESS(200, "成功"),
-        ENTITY_ERROR(300,"实体校验异常"),
+        SQL_ERROR(300,"数据库异常"),
+        SQL_FOREIGN_KEY_ERROE(310,"存在外键，操作失败"),
+        PARAM_ERROR(400,"参数错误"),
         PERMISSION_DENIED(401, "没有权限"),
+        FORBIDDEN(403,"禁止操作"),
         INTERNAL_SERVER_ERROR(500, "服务端错误"),
         USERNAME_OR_PASSWORD_ERROR(600,"用户名或密码不对"),
         FORBID_USER(700,"账号被禁用，请联系管理员"),
-        NO_LOGIN(800,"用户未登录或凭证过期"),
+        NO_LOGIN(800,"用户未登录或凭证非法"),
         USERNAME_EXIST(810,"用户名已存在"),
         NO_CODE(900,"验证码不正确");
 

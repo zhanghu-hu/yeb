@@ -6,6 +6,7 @@
         <!--module的名称,关联子工程-->
         <module>server</module>
         <module>autoGenerator</module>
+        <module>mail</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

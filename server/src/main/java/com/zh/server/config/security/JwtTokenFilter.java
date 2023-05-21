@@ -36,6 +36,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
     /**
      * 前置拦截
+     * 所有请求（包括白名单）都进入这个拦截器，职能是根据token设置用户对象
      * @param httpServletRequest
      * @param httpServletResponse
      * @param filterChain
@@ -51,9 +52,9 @@ public class JwtTokenFilter extends OncePerRequestFilter {
             if (authHeader.startsWith(tokenHead)) {
                 String authToken = authHeader.substring(tokenHead.length());
                 String username = jwtToken.getUsernameFromToken(authToken);
-                //token存在用户名但未登录
+                //token存在用户名但未登录，每次检验token都会执行内部函数
                 if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-                    //登录
+                    //登录，获取User实体（可以设置redis存储）
                     UserDetails userDetails = userDetailsService.loadUserByUsername(username);
                     //验证token是否有效，重新设置用户对象
                     if (jwtToken.validateToken(authToken, userDetails)) {

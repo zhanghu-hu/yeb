@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zh.server.mapper.gis.GISMapper">
+
+    <select id="getClusterPointData" resultType="com.zh.server.response.gis.PointResponse">
+        SELECT SUM(t_longitude)/COUNT(*) AS longitude,SUM(t_latitude)/COUNT(*) as latitude,COUNT(*) as count
+        FROM testPoint
+        WHERE t_geohash LIKE concat(#{base},'%');
+    </select>
+
+    <select id="getPointData" resultType="com.zh.server.response.gis.PointResponse">
+        SELECT t_id as id,t_province as province,t_city as city,t_city_code as cityCode,t_county_code as countyCode,
+            t_county as county,t_town as town,t_town_code as townCode,t_longitude as longitude,t_latitude as latitude
+        FROM testPoint
+        WHERE t_geohash LIKE CONCAT(#{base},'%');
+    </select>
+</mapper>

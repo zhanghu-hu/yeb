@@ -1,19 +1,26 @@
 package com.zh.server.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.experimental.Accessors;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -46,6 +53,7 @@ public class User implements Serializable, UserDetails {
     private String tAddress;
 
     @ApiModelProperty(value = "是否启用")
+    @Getter(AccessLevel.NONE) //不生成get方法
     private Boolean tEnable;
 
     @ApiModelProperty(value = "用户名")
@@ -57,18 +65,31 @@ public class User implements Serializable, UserDetails {
     private String tPassword;
 
     @ApiModelProperty(value = "用户头像")
+    @TableField("t_userFace")
     private String tUserFace;
 
     @ApiModelProperty(value = "备注")
     private String tRemark;
+
+    @ApiModelProperty(value = "角色")
+    @TableField(exist = false)
+    @JsonInclude(JsonInclude.Include.NON_NULL)  //为null时不参与json序列化，避免错误
+    private List<Role> roles;
 
     /**
      * 权限
      * @return
      */
     @Override
+//    @JsonDeserialize(using = CustomAuthorityDeserializer.class)
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+
+        List<SimpleGrantedAuthority> authorities=null;
+        if (roles!=null) {
+            authorities = roles
+                    .stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
+        }
+        return authorities;
     }
 
     @Override
